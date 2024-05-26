@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Calculadora de Derivadas Parciales</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Calculadora de Derivadas Parciales</a>
+        </nav>
+        <div class="row mt-4">
+            <div class="col-md-9">
+
+                <div class="card">
+                    <div class="card-header">
+                        Ingrese la función
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="function">Función f(x, y):</label>
+                                <input type="text" class="form-control" id="function" name="function" placeholder="Ej: x**2 - 3*x*y + 2*y**2 - 4*x + 5*y - 12" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calcular</button>
+                        </form>
+                    </div>
+                </div>
+
+                {% if result %}
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            Resultados
+                        </div>
+                        <div class="card-body">
+                            {% if result.error %}
+                                <p class="text-danger">{{ result.error }}</p>
+                            {% else %}
+                                <p><strong>f(x, y):</strong> {{ result.f }}</p>
+                                <p><strong>∂f/∂x:</strong> {{ result.df_dx }}</p>
+                                <p><strong>∂f/∂y:</strong> {{ result.df_dy }}</p>
+                                <p><strong>∂²f/∂x²:</strong> {{ result.d2f_dx2 }}</p>
+                                <p><strong>∂²f/∂y²:</strong> {{ result.d2f_dy2 }}</p>
+                                <p><strong>∂²f/∂x∂y:</strong> {{ result.d2f_dxdy }}</p>
+                                <p><strong>∂²f/∂y∂x:</strong> {{ result.d2f_dydx }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    
+                    <div class="card-body text-center">
+                        <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="rounded-circle img-fluid mb-3" alt="Profile Picture" width="150" height="150">
+                        <h5 class="card-title">Matematicas III</h5>
+                        <p class="card-text">Las derivadas parciales de segundo orden en cálculo son las derivadas de las derivadas parciales de una función de varias variables. Miden cómo cambian las tasas de cambio locales de una función respecto a cada una de sus variables, lo que proporciona información sobre la concavidad de la función y la naturaleza de los puntos críticos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <span class="text-muted">Derechos reservados &copy; 2024 Sthefany Darley Chuquipoma Medina</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
